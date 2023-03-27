@@ -15,10 +15,10 @@ public class basicMain : MonoBehaviour
         this.Hello.onClick.AddListener(() =>
         {
             var url = string.Format("{0}:{1}/", host, port);
-            Debug.Log(url);
+            Debug.Log("1"+url);
             StartCoroutine(this.GetBasic(url, (raw) =>
             {
-                Debug.LogFormat("{0}", raw);
+                Debug.LogFormat("{0}", "2"+raw);
             }
             ));
         }
