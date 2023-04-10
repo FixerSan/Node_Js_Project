@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 
 let users = [];                                     //App.js 에서 users 배열 추가 
-
+let usersid = [];                                   //user id 배열 추가
 app.use(express.json());
 
 app.get('/', (req, res)=>{
@@ -80,6 +80,34 @@ app.post('/scores', (req, res)=>{
     console.log(users);
     res.send(result);
 
+});
+
+//  let userid = [];
+
+app.post('/register', (req, res)=>{
+
+    console.log(req.body.userid.id);                    //Unity에서 req에 id를 무었을 보냈는지 확인 
+    let id = req.body.userid.id;
+    let password = req.body.userid. password;
+    let result = {
+        cmd : -1,
+        message : ''
+    }
+
+    let userid = usersid.find(x=>x.id == id);   
+    if(userid === undefined)                                  //if(user == null) => if(user === undefined)    
+    { 
+        usersid.push({id, password
+        });
+        result.cmd = 1101;
+        result.message = '신규 아이디가 등록 되었습니다.'
+    }
+    else 
+    {
+        result.cmd = 1102;
+        result.message = '이미 존재하는 아이디 입니다.'
+    }   
+    res.send(result);
 });
 
 app.listen(3030, ()=> {
